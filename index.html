@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Miaoye Que">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>Sign Up Form</title>
+</head>
+
+<body>
+    <div id="form">
+        <div>
+            <h1 id="title">Please Provide Your Personal Information</h1>
+        </div>
+        <div id="start">
+            <div id="first">
+                <h3>First Name</h3>
+                <select name="letter" id="f1" class="letters">
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                    <option value="d">d</option>
+                    <option value="e">e</option>
+                    <option value="f">f</option>
+                    <option value="g">g</option>
+                    <option value="h">h</option>
+                    <option value="i">i</option>
+                    <option value="j">j</option>
+                    <option value="k">k</option>
+                    <option value="l">l</option>
+                    <option value="m">m</option>
+                    <option value="n">n</option>
+                    <option value="o">o</option>
+                    <option value="p">p</option>
+                    <option value="q">q</option>
+                    <option value="r">r</option>
+                    <option value="s">s</option>
+                    <option value="t">t</option>
+                    <option value="u">u</option>
+                    <option value="v">v</option>
+                    <option value="w">w</option>
+                    <option value="x">x</option>
+                    <option value="y">y</option>
+                    <option value="z">z</option>
+                </select>
+                <div class="plus">
+                    <button onclick="addLetter('f')">+</button>
+                </div>
+            </div>
+            <div id="last">
+                <h3>Last Name</h3>
+                <select name="letter" id="l1" class="letters">
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                    <option value="d">d</option>
+                    <option value="e">e</option>
+                    <option value="f">f</option>
+                    <option value="g">g</option>
+                    <option value="h">h</option>
+                    <option value="i">i</option>
+                    <option value="j">j</option>
+                    <option value="k">k</option>
+                    <option value="l">l</option>
+                    <option value="m">m</option>
+                    <option value="n">n</option>
+                    <option value="o">o</option>
+                    <option value="p">p</option>
+                    <option value="q">q</option>
+                    <option value="r">r</option>
+                    <option value="s">s</option>
+                    <option value="t">t</option>
+                    <option value="u">u</option>
+                    <option value="v">v</option>
+                    <option value="w">w</option>
+                    <option value="x">x</option>
+                    <option value="y">y</option>
+                    <option value="z">z</option>
+                </select>
+                <div class="plus">
+                    <button onclick="addLetter('l')">+</button>
+                </div>
+                <div class="buttons">
+                    <button onclick="saveName()">Continue</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="second">
+            <h3>Phone Number</h3>
+            <input id="phonenumber" type="number" onkeydown="return false" />
+            <div class="buttons">
+                <button onclick="saveNumber()">Continue</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let q = (e) => document.querySelector(e),
+            first = 1,
+            last = 1,
+            n = 0;
+        let first_name = '', last_name = '';
+
+        function addLetter(c) {
+            if (c === 'f') {
+                let l = document.getElementById(`f${first}`);
+                let nl = l.cloneNode(true);
+                first++;
+                nl.id = `f${first}`;
+                l.after(nl);
+            }
+            if (c === 'l') {
+                let l = document.getElementById(`l${last}`);
+                let nl = l.cloneNode(true);
+                last++;
+                nl.id = `l${last}`;
+                l.after(nl);
+            }
+        }
+
+        function saveName() {
+            for (let i = 1; i < first + 1; i++) {
+                let m = document.getElementById(`f${i}`);
+                first_name += m.value;
+            }
+
+            for (let j = 1; j < last + 1; j++) {
+                let n = document.getElementById(`l${j}`);
+                last_name += n.value;
+            }
+
+            first_name = first_name.substring(0, 1).toUpperCase() + first_name.substring(1);
+            last_name = last_name.substring(0, 1).toUpperCase() + last_name.substring(1);
+
+            q("#start").style.display = "none";
+            q("#second").style.display = "block";
+            q("#title").innerHTML = "Hi " + first_name + " " + last_name + "!";
+        }
+
+        function saveNumber() {
+            let number = q("#phonenumber").value;
+            if (number.toString().length < 10) {
+                n++;
+                switch (n) {
+                    case 1:
+                        alert("Hmmm that doesn't look right.");
+                        break;
+                    case 2:
+                        alert("Your phone number should be 10 digits.");
+                        break;
+                    case 3:
+                        alert("Still don't get it? Fine. You can type.");
+                        q("#phonenumber").onkeydown = "return true";
+                        break;
+                }
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>

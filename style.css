@@ -1,0 +1,15 @@
+.plus {
+    display: inline-block;
+}
+
+.class {
+    display: inline-block;
+}
+
+.buttons {
+    margin-top: 30px;
+}
+
+#second {
+    display: none;
+}
