@@ -10,6 +10,8 @@
     margin-top: 30px;
 }
 
-#second {
+#second,
+#third,
+#fourth {
     display: none;
 }
